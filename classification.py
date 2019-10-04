@@ -1,3 +1,4 @@
+##
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.utils import resample
@@ -33,30 +34,30 @@ def plot_confusion_matrix(y_true, y_pred,
     print(cm)
 
     fig, ax = plt.subplots()
-    im = ax.imshow(cm, interpolation='nearest', cmap=cmap)
-    ax.figure.colorbar(im, ax=ax)
+
     # We want to show all ticks...
-    ax.set(xticks=np.arange(cm.shape[1]),
-           yticks=np.arange(cm.shape[0]),
+    ax.set(xticks=np.arange(cm.shape[0]),
+           yticks=np.arange(cm.shape[1]),
            title=title,
            ylabel='True label',
            xlabel='Predicted label')
-
     # Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
-             rotation_mode="anchor")
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",rotation_mode="anchor")
 
     # Loop over data dimensions and create text annotations.
-    fmt = '.2f' if normalize else 'd'
+    fmt = 'd'
     thresh = cm.max() / 2.
     for i in range(cm.shape[0]):
         for j in range(cm.shape[1]):
-            ax.text(j, i, format(cm[i, j], fmt),
-                    ha="center", va="center",
+            ax.text(i, j, format(cm[i, j], fmt),
+                    horizontalalignment="center", verticalalignment="center",
                     color="white" if cm[i, j] > thresh else "black")
+
+    ax.imshow(cm, interpolation='nearest', cmap=cmap)
     fig.tight_layout()
     return ax
 
+##
 # load data using sklearn dataset
 df = pd.read_csv("APFNBTraining.csv")
 
@@ -64,9 +65,8 @@ df = pd.read_csv("APFNBTraining.csv")
 X_majority = df[df['90'] == 0]
 X_minority = df[df['90'] == 1]
 
-
-
-# upsample minority class
+##
+# prepare data set, minority class upsampling is enabled
 X_min_upsample = resample(X_minority,
                           replace=True,
                           n_samples= 30000,
@@ -88,14 +88,26 @@ print("\ntest:\n")
 print(X_test.shape)
 print(y_test.shape)
 
+##
+# plot features
+dplt = df.drop(['90', 'Producto', 'Contrato'], axis=1)
+for i in range(len(dplt.columns)):
+    dplt.iloc[:, i].hist()
+    tit= dplt.columns[i]
+    ax = plt.subplot()
+    ax.set(title = tit)
+    plt.tight_layout()
+    plt.show()
+
+##
 # implement Gaussian Naive Bayes
 model = GaussianNB()
 model.fit(X_train, y_train)
 
 print("score:", model.score(X_test, y_test))
 
-# print confussion matrix
-labels = ['a', 'b']
+##
+# confussion matrix
 predicted = model.predict(X_test)
 print(metrics.classification_report(y_test, predicted))
 cm = metrics.confusion_matrix(predicted, y_test)
@@ -105,6 +117,7 @@ plot_confusion_matrix(predicted,
                       title="CM")
 plt.show()
 
+##
 # load data to predict, separate label columns to later concatenate with predictions
 pred = pd.read_csv("APFNBPredict.csv")
 predfnb = pred.drop(['Producto', 'Contrato'], axis=1)
