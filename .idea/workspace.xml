@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d2fbadf-ad23-47c8-b87d-8a04ee06b07e" name="Default Changelist" comment="">
+    <list default="true" id="6d2fbadf-ad23-47c8-b87d-8a04ee06b07e" name="Default Changelist" comment="implement Gaussian Naive Bayes instead of RFC">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
     </list>
@@ -33,10 +33,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classification.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="120" lean-forward="true" selection-start-line="120" selection-end-line="120" />
+            <state relative-caret-position="580">
+              <caret line="96" column="4" lean-forward="true" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="4" />
               <folding>
                 <element signature="e#3#55#0" expanded="true" />
+                <element signature="e#423#1901#0" />
               </folding>
             </state>
           </provider>
@@ -138,6 +139,9 @@
       <module name="Classification" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -190,6 +194,11 @@
       <workItem from="1570041721112" duration="2936000" />
       <workItem from="1570048877561" duration="1276000" />
       <workItem from="1570050167597" duration="95000" />
+      <workItem from="1570063442044" duration="909000" />
+      <workItem from="1570131683405" duration="2303000" />
+      <workItem from="1570134314185" duration="71000" />
+      <workItem from="1570134440079" duration="367000" />
+      <workItem from="1570195802319" duration="4009000" />
     </task>
     <task id="LOCAL-00001" summary="short code to get predictions using random forest">
       <created>1556920149182</created>
@@ -205,16 +214,23 @@
       <option name="project" value="LOCAL" />
       <updated>1569597288256</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="implement Gaussian Naive Bayes instead of RFC">
+      <created>1570063599730</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1570063599730</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38258000" />
+    <option name="totallyTimeSpent" value="45917000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12633263" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13166311" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -229,11 +245,11 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.2936078" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.2426869" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.2426869" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.3011727" />
+      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.3011727" />
       <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="4" side_tool="true" weight="0.18763326" />
       <window_info anchor="right" id="Database" order="5" weight="0.32995737" />
     </layout>
@@ -310,10 +326,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classification.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="120" lean-forward="true" selection-start-line="120" selection-end-line="120" />
+        <state relative-caret-position="580">
+          <caret line="96" column="4" lean-forward="true" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="4" />
           <folding>
             <element signature="e#3#55#0" expanded="true" />
+            <element signature="e#423#1901#0" />
           </folding>
         </state>
       </provider>

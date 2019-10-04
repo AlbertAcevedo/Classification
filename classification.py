@@ -66,7 +66,7 @@ X_majority = df[df['90'] == 0]
 X_minority = df[df['90'] == 1]
 
 ##
-# upsample minority class
+# prepare data set, minority class upsampling is enabled
 X_min_upsample = resample(X_minority,
                           replace=True,
                           n_samples= 30000,
@@ -87,6 +87,17 @@ print(y_train.shape)
 print("\ntest:\n")
 print(X_test.shape)
 print(y_test.shape)
+
+##
+# plot features
+dplt = df.drop(['90', 'Producto', 'Contrato'], axis=1)
+for i in range(len(dplt.columns)):
+    dplt.iloc[:, i].hist()
+    tit= dplt.columns[i]
+    ax = plt.subplot()
+    ax.set(title = tit)
+    plt.tight_layout()
+    plt.show()
 
 ##
 # implement Gaussian Naive Bayes
