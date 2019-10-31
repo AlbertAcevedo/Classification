@@ -7,6 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 # plot function
 def plot_confusion_matrix(y_true, y_pred,
                           normalize=False,
@@ -57,9 +58,11 @@ def plot_confusion_matrix(y_true, y_pred,
     fig.tight_layout()
     return ax
 
+
 ##
 # load data using sklearn dataset
 df = pd.read_csv("APFNBTraining.csv")
+
 
 # split X into majority and minority
 X_majority = df[df['90'] == 0]
@@ -69,13 +72,13 @@ X_minority = df[df['90'] == 1]
 # prepare data set, minority class upsampling is enabled
 X_min_upsample = resample(X_minority,
                           replace=True,
-                          n_samples= 30000,
+                          n_samples= 15000,
                           random_state=42)
 
 # split your data
 data = pd.concat([X_majority, X_min_upsample])
 y = data['90'] # target
-X = data.drop(['90', 'Producto', 'Contrato'], axis = 1) #
+X = data.drop(['90', 'Producto', 'Contrato'], axis=1) #
 # Split the data into train and test sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
 
@@ -93,14 +96,14 @@ print(y_test.shape)
 dplt = df.drop(['90', 'Producto', 'Contrato'], axis=1)
 for i in range(len(dplt.columns)):
     dplt.iloc[:, i].hist()
-    tit= dplt.columns[i]
-    ax = plt.subplot()
-    ax.set(title = tit)
+    tit = dplt.columns[i]
+    axis = plt.subplot()
+    axis.set(title=tit)
     plt.tight_layout()
     plt.show()
 
 ##
-# implement Gaussian Naive Bayes
+# implement Naive Bayes
 model = GaussianNB()
 model.fit(X_train, y_train)
 
@@ -110,7 +113,7 @@ print("score:", model.score(X_test, y_test))
 # confussion matrix
 predicted = model.predict(X_test)
 print(metrics.classification_report(y_test, predicted))
-cm = metrics.confusion_matrix(predicted, y_test)
+cmat = metrics.confusion_matrix(predicted, y_test)
 plot_confusion_matrix(predicted,
                       y_test,
                       normalize=False,
@@ -128,3 +131,4 @@ print(predfnb.shape)
 predictions = model.predict(predfnb)
 predfnb['target'] = predictions
 predfnb.to_csv('predictions.csv')
+print(sum(y_test))
